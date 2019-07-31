@@ -2,15 +2,19 @@ import React, { Component } from "react"
 import TodoListTemplate from "./components/TodoListTemplate"
 import Form from "./components/Form"
 import TodoItemList from "./components/TodoItemList"
+import Palette from "./components/Palette"
+
+const colors = ["#343a40", "#f03e3e", "#12b886", "#228ae6"]
 
 class App extends Component {
   id = 3
   state = {
     input: "",
+    selectedColor: colors[0],
     todos: [
-      { id: 0, text: "리액트 소개", checked: false },
-      { id: 1, text: "리액트 소개", checked: true },
-      { id: 2, text: "리액트 소개", checked: false }
+      { id: 0, text: "리액트 소개", checked: false, fontColor: "#343a40" },
+      { id: 1, text: "리액트 소개", checked: true, fontColor: "#f03e3e" },
+      { id: 2, text: "리액트 소개", checked: false, fontColor: "#343a40" }
     ]
   }
 
@@ -21,13 +25,14 @@ class App extends Component {
   }
 
   handleCreate = () => {
-    const { input, todos } = this.state
+    const { input, todos, selectedColor } = this.state
     this.setState({
       input: "",
       todos: todos.concat({
         id: this.id++,
         text: input,
-        checked: false
+        checked: false,
+        fontColor: selectedColor
       })
     })
   }
@@ -64,23 +69,38 @@ class App extends Component {
     })
   }
 
+  handleSelectColor = color => {
+    this.setState({
+      selectedColor: color
+    })
+  }
+
   render() {
-    const { input, todos } = this.state
+    const { input, todos, selectedColor } = this.state
     const {
       handleChange,
       handleCreate,
       handleKeyPress,
       handleToggle,
-      handleRemove
+      handleRemove,
+      handleSelectColor
     } = this
     return (
       <TodoListTemplate
         form={
           <Form
             value={input}
+            fontColor={selectedColor}
             onChange={handleChange}
             onCreate={handleCreate}
             onKeyPress={handleKeyPress}
+          />
+        }
+        palette={
+          <Palette
+            colors={colors}
+            selected={selectedColor}
+            onSelect={handleSelectColor}
           />
         }
       >
