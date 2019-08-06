@@ -2,13 +2,8 @@ import React, { Component } from "react"
 import "./TodoItem.css"
 
 class TodoItem extends Component {
-  shouldComponentUpdate(nextProps, nextState) {
-    return this.props.checked !== nextProps.checked
-  }
-
   render() {
-    const { text, checked, id, fontColor, onToggle, onRemove } = this.props
-    console.log(id)
+    const { text, checked, id, color, onToggle, onRemove } = this.props
     return (
       <div className="todo-item" onClick={() => onToggle(id)}>
         <div
@@ -20,11 +15,8 @@ class TodoItem extends Component {
         >
           &times;
         </div>
-        <div
-          className={`todo-text ${checked ? " checked" : ""}`}
-          style={{ color: fontColor }}
-        >
-          <div>{text}</div>
+        <div className={`todo-text ${checked ? " checked" : ""}`}>
+          <div style={{ color: color }}>{text}</div>
         </div>
         {checked && <div className="check-mark">✓</div>}
       </div>

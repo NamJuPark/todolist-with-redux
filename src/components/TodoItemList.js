@@ -2,22 +2,18 @@ import React, { Component } from "react"
 import TodoItem from "./TodoItem"
 
 class TodoItemList extends Component {
-  shouldComponentUpdate(nextProps, nextState) {
-    return this.props.todos !== nextProps.todos
-  }
-
   render() {
     const { todos, onToggle, onRemove } = this.props
 
-    const todoList = todos.map(({ id, text, checked, fontColor }) => (
+    const todoList = todos.map(todo => (
       <TodoItem
-        id={id}
-        text={text}
-        checked={checked}
-        fontColor={fontColor}
+        key={todo.get("id")}
+        id={todo.get("id")}
+        text={todo.get("text")}
+        checked={todo.get("checked")}
+        color={todo.get("color")}
         onToggle={onToggle}
         onRemove={onRemove}
-        key={id}
       />
     ))
 

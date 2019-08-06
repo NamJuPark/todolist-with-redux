@@ -1,12 +1,12 @@
 import React from "react"
 import "./Form.css"
 
-const Form = ({ value, fontColor, onChange, onCreate, onKeyPress }) => {
+const Form = ({ value, color, onChange, onCreate, onKeyPress }) => {
   return (
     <div className="form">
       <input
         value={value}
-        style={{ color: fontColor }}
+        style={{ color: color }}
         onChange={onChange}
         onCreate={onCreate}
         onKeyPress={onKeyPress}

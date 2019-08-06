@@ -1,13 +1,22 @@
 import React from "react"
+import FormContainer from "../containers/FormContainer"
+import TodoListContainer from "../containers/TodoListContainer"
+import PaletteContainer from "../containers/PaletteContainer"
 import "./TodoListTemplate.css"
 
-const TodoListTemplate = ({ form, palette, children }) => {
+const TodoListTemplate = () => {
   return (
     <main className="todo-list-template">
       <div className="title">오늘 할 일</div>
-      <section className="palette-wrapper">{palette}</section>
-      <section className="form-wrapper">{form}</section>
-      <section className="todos-wrapper">{children}</section>
+      <section className="palette-wrapper">
+        <PaletteContainer />
+      </section>
+      <section className="form-wrapper">
+        <FormContainer />
+      </section>
+      <section className="todos-wrapper">
+        <TodoListContainer />
+      </section>
     </main>
   )
 }
