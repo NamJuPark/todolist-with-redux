@@ -1,8 +1,13 @@
 import React from "react"
-import { changeInput, create } from "../store/modules/todoList"
+import {
+  changeInput,
+  create,
+  clearFuture,
+  redoPast
+} from "../store/modules/todoList"
 import { connect } from "react-redux"
 import { bindActionCreators } from "redux"
-import Form from "../components/Form"
+import Form from "../components/Molecules/Form"
 
 const FormContainer = props => {
   //인풋 변경 이벤트
@@ -12,7 +17,9 @@ const FormContainer = props => {
   }
   const handleCreate = () => {
     const { FormActions, input, selectedColor } = props
+    FormActions.redoPast()
     FormActions.create(input, selectedColor)
+    FormActions.clearFuture()
     FormActions.changeInput("")
   }
   const handleKeyPress = e => {
@@ -40,7 +47,10 @@ const mapStateToProps = ({ todoList }) => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  FormActions: bindActionCreators({ changeInput, create }, dispatch)
+  FormActions: bindActionCreators(
+    { changeInput, create, clearFuture, redoPast },
+    dispatch
+  )
 })
 
 export default connect(

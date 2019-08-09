@@ -1,10 +1,9 @@
 import React, { Component } from "react"
-import TodoItem from "./TodoItem"
+import TodoItem from "../Molecules/TodoItem"
 
 class TodoItemList extends Component {
   render() {
     const { todos, onToggle, onRemove } = this.props
-
     const todoList = todos.map(todo => (
       <TodoItem
         key={todo.get("id")}

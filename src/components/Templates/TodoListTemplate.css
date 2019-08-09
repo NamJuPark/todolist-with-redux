@@ -20,6 +20,10 @@
 .todos-wrapper {
   min-height: 5rem;
 }
+.undo-redo-wrapper {
+  padding: 1rem;
+  border-bottom: 1px solid #22b8cf;
+}
 .palette-wrapper {
   padding-top: 2rem;
 }

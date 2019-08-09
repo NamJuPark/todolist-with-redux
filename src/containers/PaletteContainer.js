@@ -1,7 +1,7 @@
 import React from "react"
 import { connect } from "react-redux"
 import { bindActionCreators } from "redux"
-import Palette from "../components/Palette"
+import Palette from "../components/Molecules/Palette"
 import { changeColor } from "../store/modules/todoList"
 
 const PalleteContainer = props => {
@@ -12,9 +12,13 @@ const PalleteContainer = props => {
   return <Palette selected={props.selectedColor} onSelect={handleSelectColor} />
 }
 
-const mapStateToProps = ({ todoList }) => ({
-  selectedColor: todoList.get("selectedColor")
-})
+// const mapStateToProps = ({ todoList }) => ({
+//   selectedColor: todoList.get("selectedColor")
+// })
+
+const mapStateToProps = ({ todoList }) => {
+  return { selectedColor: todoList.get("selectedColor") }
+}
 
 const mapDispatchToProps = dispatch => ({
   PaletteActions: bindActionCreators({ changeColor }, dispatch)

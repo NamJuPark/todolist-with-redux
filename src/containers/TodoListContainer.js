@@ -1,8 +1,8 @@
 import React from "react"
 import { connect } from "react-redux"
-import { check, remove } from "../store/modules/todoList"
+import { check, remove, redoPast } from "../store/modules/todoList"
 import { bindActionCreators } from "redux"
-import TodoItemList from "../components/TodoItemList"
+import TodoItemList from "../components/Organisms/TodoItemList"
 
 const TodoListContainer = props => {
   const handleToggle = id => {
@@ -12,6 +12,7 @@ const TodoListContainer = props => {
 
   const handleRemove = id => {
     const { TodoListActions } = props
+    TodoListActions.redoPast()
     TodoListActions.remove(id)
   }
 
@@ -25,11 +26,11 @@ const TodoListContainer = props => {
 }
 
 const mapStateToProps = ({ todoList }) => ({
-  todos: todoList.get("todos")
+  todos: todoList.getIn(["todos", "present"])
 })
 
 const mapDispatchToProps = dispatch => ({
-  TodoListActions: bindActionCreators({ check, remove }, dispatch)
+  TodoListActions: bindActionCreators({ check, remove, redoPast }, dispatch)
 })
 
 export default connect(

@@ -1,7 +1,8 @@
 import React from "react"
-import FormContainer from "../containers/FormContainer"
-import TodoListContainer from "../containers/TodoListContainer"
-import PaletteContainer from "../containers/PaletteContainer"
+import FormContainer from "../../containers/FormContainer"
+import TodoListContainer from "../../containers/TodoListContainer"
+import PaletteContainer from "../../containers/PaletteContainer"
+import UndoRedoContainer from "../../containers/UndoRedoContainer"
 import "./TodoListTemplate.css"
 
 const TodoListTemplate = () => {
@@ -13,6 +14,9 @@ const TodoListTemplate = () => {
       </section>
       <section className="form-wrapper">
         <FormContainer />
+      </section>
+      <section className="undo-redo-wrapper">
+        <UndoRedoContainer />
       </section>
       <section className="todos-wrapper">
         <TodoListContainer />
